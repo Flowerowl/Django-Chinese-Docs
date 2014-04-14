@@ -34,6 +34,7 @@ http://readthedocs.org/docs/django-document-cn/en/latest/
   [ 100%] [       9677]  ./topics/http/middleware.txt
   [ 100%] [       7588]  ./ref/middleware.txt
   [ 100%] [      23873]  ./topics/class-based-views.txt
+  [  40%] [       2755]  ./topics/db/tablespaces.txt
 
 未完成的文档::
 
