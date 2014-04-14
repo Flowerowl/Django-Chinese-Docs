@@ -9,12 +9,12 @@
 .. 提示::
     Django 没有为你创建tablespaces. 请参照你的数据库引擎文档来创建以及管理tablespaces.  
 
-为table声明tablespaces
+为表声明tablespaces
 --------------------------------
 
-table的tablespace可以根据model的``class Meta``的:attr:`~django.db.models.Options.db_tablespace`属性来指定生成。
+表的tablespace可以根据model的``class Meta``类中的:attr:`~django.db.models.Options.db_tablespace`属性来指定生成。
 
-这个选项也会自动的对model里的:class:`~django.db.models.ManyToManyField`创建并生效。
+这个选项也会自动的对model里的:class:`~django.db.models.ManyToManyField`关联表创建并生效。
 
 你可以使用:setting:`DEFAULT_TABLESPACE`来为:attr:`~django.db.models.Options.db_tablespace`指定一个默认值.
 
@@ -23,15 +23,15 @@ table的tablespace可以根据model的``class Meta``的:attr:`~django.db.models.
 为表索引声明tablespaces
 ---------------------------------
 
-你可以在``Field``构造函数里传入:attr:`~django.db.models.Field.db_tablespaces`来为index指定一个其他的tablespace.
+你可以在``Field``构造函数里传入:attr:`~django.db.models.Field.db_tablespaces`来为索引指定一个其他的tablespace.
 
-如果column没有index的话,tablespace的设置将被忽略。
+如果此列没有索引的话,tablespace的设置将被忽略。
 
 你可以使用:setting:`DEFAULT_INDEX_TABLESPACE`来为:attr:`~django.db.models.Field.db_tablespace`指定一个默认值.
 
 如果:attr:`~django.db.models.Field.db_tablespace`没有被指定并且你没有设置:setting:`DEFAULT_INDEX_TABLESPACE`,
 
-那么index将会和tables一同创建在同一个tablespace.
+那么索引将会和表一同创建在同一个tablespace.
 
 示例
 ----------
@@ -46,11 +46,11 @@ table的tablespace可以根据model的``class Meta``的:attr:`~django.db.models.
         class Meta:
             db_tablespace = "tables"
 
-在这个例子中,使用``TablespaceExample``model来创建的表(也就是model table以及many-to-many关联table)将会存储在``tables``的tablespace。
+在这个例子中,使用``TablespaceExample``model来创建的表(也就是model表以及many-to-many关联表)将会存储在``tables``的tablespace。
 
-name字段以及many-to-many关联表上的index都会被存储在``indexes``tablespace。
+name字段以及many-to-many关联表上的索引都会被存储在``indexes``tablespace。
 
-``data``字段也产生index,但是它没有指明tablespace,所以将会使用model默认的tablespace``tables``.
+``data``字段也产生索引,但是它没有指明tablespace,所以将会使用model默认的tablespace``tables``.
 
 数据库支持
 ----------------
